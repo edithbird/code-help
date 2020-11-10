@@ -101,8 +101,8 @@ kable(ReferenceTable, caption = "Table where missing info can be found") %>%
 
 ```
 
-### =VLOOKUP(E2, Name of Reference Table, Column Number of Reference Table that has the Missing Information, FALSE)
+### =VLOOKUP(A2, Name of Reference Table, Column Number of Reference Table that has the Missing Information, FALSE)
 
 ![](C:/Users/christine.iyer/Pictures/Screenshot (180)_LI.jpg)
 
-![](C:/Users/christine.iyer/Pictures/Screenshot (182)_LI.jpg)
+![](C:/Users/christine.iyer/Pictures/Screenshot (185)_LI.jpg)
