@@ -1,0 +1,108 @@
+---
+title: "VLookUp"
+date: "11/9/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+
+```{r}
+library(knitr)
+library(kableExtra)
+library(emo)
+```
+
+### 2 Tables
+
+* Master Table 
+  - Needs Information
+  - Must be on Left
+
+* Reference Table 
+  - Has Information
+  - Must be on Right 
+  - Should be Named
+  - __The  `r emo::ji("key")`  here is to make sure the common field that links to the master table to the Reference Table is to the left of the value being looked up. (Notice how Names preceeds Favorite Candy in the Reference Table)__
+  
+
+
+```{r}
+Name<- c("Chris", "Oliver", "Edith", "Leah", "Oscar", "Raizel")
+Birthday <- c("1966-03-27", "2001-01-21", "1998-03-22", "1970-10-03", "2004-02-16", "2001-05-31")
+Color <- c("Red","Orange", "Yellow", "Green", "Blue", "Indigo")
+Twitter <- c("@ChristineIyer", "@edithbirdd","@MrNobody","@sunnymede1", "@oskrrtmcnally", "@MsNobody")
+FavoriteCandy <- c("Look Up", "Look Up", "Look Up", "Look Up ",  "Look Up",  "Look Up")
+ReferenceTables <- c(" ", " ", " ", " ", " ", " "," ", " ", " ", " ", " ", " ")
+
+MasterTable <- data.frame(Name, Birthday, Color, Twitter, FavoriteCandy)
+
+`LookUpValue FavoriteCandy` <- c("Snickers", "KitKat", "M&M's", "Reeces", "Twix", "Starburst", "Atomic Fireballs", "Sour Patch Kids", "Nestlee Crunch", "Mike & Ike", "Necco Wafers", "Smartees")
+Names <- c("Raizel", "Edith", "Leah", "Oliver", "Chris", "Paul", "Lolo", "Oscar", "Phoebe", "Jake", "Andrey", "Danika")
+Number <- c(1,2,3,4,5,6,7,8,9,10,11,12)
+ReferenceTable <- data.frame(Names, FavoriteCandy, Number )
+#kable(list(MasterTable, ReferenceTable))
+```
+
+
+
+
+  
+```{r}
+kable(MasterTable, caption = "Title of the table") %>%
+  cell_spec(MasterTable$FavoriteCandy,  color = "white", align = "c", angle = 45, 
+  background = factor(MasterTable$FavoriteCandy, color = "red") %>% 
+  
+  kable_styling(full_width = FALSE, position = "float_left"))
+
+```
+  
+  
+```{r}
+# library(magrittr)
+# library(DT)
+# MasterTable %>%
+#     datatable(options = list(dom = "t", ordering = FALSE),
+#               rownames = FALSE,
+#               width = 10) %>%
+#     formatStyle("FavoriteCandy", backgroundColor = styleEqual("Look Up", "yellow"))
+
+
+
+# ReferenceTable %>%
+#     datatable(options = list(dom = "t", ordering = FALSE),
+#               rownames = FALSE,
+#               width = 10) %>%
+#     formatStyle("FavoriteCandy", backgroundColor = styleEqual("Look Up", "yellow"))
+
+# kable(ReferenceTable) %>%
+#   kable_styling(full_width = FALSE, position = "left")
+
+```
+  
+
+```{r, echo = FALSE}
+
+
+kable(MasterTable, caption = "Table that needs information") %>%
+  
+  kable_styling(full_width = FALSE, position = "float_left")
+
+
+
+kable(ReferenceTable, caption = "Table where missing info can be found") %>%
+  kable_styling(full_width = FALSE, position = "left")
+
+```
+
+### =VLOOKUP(E2, Name of Reference Table, Column Number of Reference Table that has the Missing Information, FALSE)
+
+![](C:/Users/christine.iyer/Pictures/Screenshot (180)_LI.jpg)
+
+![](C:/Users/christine.iyer/Pictures/Screenshot (182)_LI.jpg)

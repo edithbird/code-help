@@ -21,3 +21,16 @@ a <- drop_read_csv("Reporting/FY 2021/6 - week of August 10/Snapchat_8.10.20_to8
 kable(a)
 
 ```
+c("M18CUTT1", "M18HSSN2", "M18HSSN3", "M18HSUG1", "M18HSUG2", "M18WACUGR1", "M18WADC1", "M18WAOL1", "MBUSF21", "MDCF19", "MDCF20", "MDCF20B",, "MGRF19", "MGRF120", "MGRF220B",  "MHSF19", "MHSF20", "MHSF20B", "MMUSF20", "MOLF19", "MOLF20", "MOLF20B" "MRSPF21", "MTRF14", "MTRF19", "MTRF20B")
+
+## Change All Date Fields
+
+```{r}
+data %>% 
+  mutate_at(
+    vars("Birthdate", "App.Application.Date","Admit.Date","App.Deposit.Date"), 
+    as.POSIXct,
+    format = "%m/%d/%Y"
+    )
+```
+
